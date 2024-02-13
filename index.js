@@ -4,10 +4,14 @@ import pg from "pg";
 
 const { Pool } = pg;
 const app = express();
-const port = 3000;
+const port = process.env.PORT ||3000;
 
 const pool = new Pool({
-  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+  connectionString: process.env.POSTGRES_URL ,
+  user: process.env.POSTGRES_USER,
+  host:process.env.POSTGRES_HOST,
+  database: process.env.POSTGRES_DATABASE,
+  password: process.env.POSTGRES_PASSWORD, 
 })
 pool.connect();
 
